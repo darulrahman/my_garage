@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\vintage_garage_web.props" />
+</Project>

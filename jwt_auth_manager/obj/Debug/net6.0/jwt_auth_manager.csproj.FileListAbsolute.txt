@@ -1,0 +1,12 @@
+E:\Projects\Mandiri\services\jwt_auth_manager\bin\Debug\net6.0\jwt_auth_manager.deps.json
+E:\Projects\Mandiri\services\jwt_auth_manager\bin\Debug\net6.0\jwt_auth_manager.dll
+E:\Projects\Mandiri\services\jwt_auth_manager\bin\Debug\net6.0\jwt_auth_manager.pdb
+E:\Projects\Mandiri\services\jwt_auth_manager\obj\Debug\net6.0\jwt_auth_manager.csproj.AssemblyReference.cache
+E:\Projects\Mandiri\services\jwt_auth_manager\obj\Debug\net6.0\jwt_auth_manager.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\Mandiri\services\jwt_auth_manager\obj\Debug\net6.0\jwt_auth_manager.AssemblyInfoInputs.cache
+E:\Projects\Mandiri\services\jwt_auth_manager\obj\Debug\net6.0\jwt_auth_manager.AssemblyInfo.cs
+E:\Projects\Mandiri\services\jwt_auth_manager\obj\Debug\net6.0\jwt_auth_manager.csproj.CoreCompileInputs.cache
+E:\Projects\Mandiri\services\jwt_auth_manager\obj\Debug\net6.0\jwt_auth_manager.dll
+E:\Projects\Mandiri\services\jwt_auth_manager\obj\Debug\net6.0\refint\jwt_auth_manager.dll
+E:\Projects\Mandiri\services\jwt_auth_manager\obj\Debug\net6.0\jwt_auth_manager.pdb
+E:\Projects\Mandiri\services\jwt_auth_manager\obj\Debug\net6.0\ref\jwt_auth_manager.dll

@@ -1,0 +1,51 @@
+﻿@using vintage_garage_web.Models.Login;
+@model LoginReq;
+
+@*<h3>Login</h3>*@
+@*
+<form method="post" asp-controller="Login" asp-action="login">
+    Username : <input type="text" name="username"/>
+    <br />
+    Password : <input type="password" name="password" />
+    <br />
+    <input type="submit" value="login"/>
+</form>*@
+
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <p>
+            <h4>Login</h4>
+        </p>
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="col-md-12 alert alert-danger">
+                <span><b>Sorry!</b> - @TempData["Error"] </span>
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="login">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Username" class="control-label"></label>
+                        <input asp-for="Username" class="form-control" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password" class="control-label"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-outline-success float-right" type="submit" value="login" />
+                        @*<a class="btn btn-outline-secondary" asp-controller="Movies" asp-action="Index">Cancel</a>*@
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,124 @@
+﻿@model IEnumerable<vintage_garage_web.Models.VehicleViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+
+<p>
+    @*<a asp-action="Create">Create New</a>*@
+    <a class="btn btn-outline-primary float-right" asp-action="Create">
+        <i class="bi bi-plus-lg"></i> Add New Vehicle
+    </a>
+</p>
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.typeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.yearOfManufacture)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.typeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.yearOfManufacture)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@
+<div class="row">
+@foreach (var item in Model) {
+    <div class="col-md-4 col-xs-6 border-primary mb-3">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @item.name
+                                @*@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                {
+                                    <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
+                                }*@
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src=@item.imageUrl width="100%" alt="@item.name">
+                        @*<img src="file:///E:/Projects/Mandiri/services/vintage_garage_web/bin/Debug/net6.0/Resources/img/default.png" width="100%" alt="@item.name">*@
+                </div>
+                <div class="col-md-6">
+                    <div class="card-body">
+                        <p class="card-text">@item.description</p>
+                        <p class="card-text"><b>Name: </b>@item.name</p>
+                        <p class="card-text"><b>Type: </b>@item.typeName</p>
+                        <p class="card-text"><b>Manufactured: </b>@item.yearOfManufacture</p>
+                        @*<p class="card-text ">
+                            <b>Status: </b>
+                            @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
+                            {
+                                <span class="badge bg-success text-white">AVAILABLE</span>
+                            }
+                            else if (DateTime.Now > item.EndDate)
+                            {
+                                <span class="badge bg-danger text-white">EXPIRED</span>
+                    }
+                            else
+                            {
+                                <span class="badge bg-primary text-white">UPCOMING</span>
+                            }
+                        </p>*@
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer ">
+                        <p class="card-text">
+                            <a class="btn btn-outline-primary float-right" asp-action="Edit" asp-route-id="@item.id">
+                                <i class="bi bi-eye-fill"></i> Edit
+                            </a>
+                                <a class="btn btn-outline-danger float-right" asp-action="Delete" asp-route-id="@item.id">
+                                    <i class="bi x-circle-fill"></i> Delete
+                                </a>
+                            @*<a class="btn btn-success text-white @((DateTime.Now > item.EndDate) ? "disabled" : "")"
+                               asp-controller="Orders"
+                               asp-action="AddItemToShoppingCart"
+                               asp-route-id="@item.Id">
+                                <i class="bi bi-cart-plus"></i> Add to Cart (Price @item.Price.ToString("c"))
+                            </a>*@
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</div>

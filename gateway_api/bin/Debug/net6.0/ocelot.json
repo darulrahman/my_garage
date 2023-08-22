@@ -1,0 +1,179 @@
+{
+  "Routes": [
+    // Authentication service
+    {
+      "DownstreamPathTemplate": "/api/Auth/sign-in",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7254
+        }
+      ],
+      "UpstreamPathTemplate": "/signin",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+
+    // Vehicle service
+    {
+      //"DownstreamPathTemplate": "/api/Vehicle",
+      "DownstreamPathTemplate": "/api/Vehicle/WithCategories",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7059
+        }
+      ],
+      "UpstreamPathTemplate": "/vehicle",
+      "UpstreamHttpMethod": [ "GET" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //},
+      //"RouteClaimsRequirement": {
+      //  "Role": "*"
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/api/Vehicle",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7059
+        }
+      ],
+      "UpstreamPathTemplate": "/vehicle",
+      "UpstreamHttpMethod": [ "PUT" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //},
+      //"RouteClaimsRequirement": {
+      //  "Role": [ "Administrator", "User" ]
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/api/Vehicle",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7059
+        }
+      ],
+      "UpstreamPathTemplate": "/vehicle",
+      "UpstreamHttpMethod": [ "POST" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //},
+      //"RouteClaimsRequirement": {
+      //  "Role": "Administrator"
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/api/Vehicle/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7059
+        }
+      ],
+      "UpstreamPathTemplate": "/vehicle/{id}",
+      "UpstreamHttpMethod": [ "GET" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/api/Vehicle/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7059
+        }
+      ],
+      "UpstreamPathTemplate": "/vehicle/{id}",
+      "UpstreamHttpMethod": [ "DELETE" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //},
+      //"RouteClaimsRequirement": {
+      //  "Role": "Administrator"
+      //}
+    },
+
+    // Type
+    {
+      "DownstreamPathTemplate": "/api/Type",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7059
+        }
+      ],
+      "UpstreamPathTemplate": "/Type",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //},
+      //"RateLimitOptions": {
+      //  "ClientWhitelist": [],
+      //  "EnableRateLimiting": true,
+      //  "Period": "60s",
+      //  "PeriodTimespan": 60,
+      //  "Limit": 1
+      //}
+    },
+    {
+      "DownstreamPathTemplate": "/api/Type/{code}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7059
+        }
+      ],
+      "UpstreamPathTemplate": "/Type/{code}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "Bearer",
+      //  "AllowedScopes": []
+      //}
+    },
+
+    // Category
+    {
+      "DownstreamPathTemplate": "/api/Category",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7059
+        }
+      ],
+      "UpstreamPathTemplate": "/Category",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Category/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7059
+        }
+      ],
+      "UpstreamPathTemplate": "/Category/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ]
+    }
+  ]
+}
