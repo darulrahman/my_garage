@@ -153,7 +153,6 @@ namespace vintage_garage_web.Repositories
 
         public string GetVehicleImage(string vehicleType)
         {
-            //string strUrl = "../Resources/img/";
             string strUrl = @"file:///" + System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources\\img\\");
             switch (vehicleType)
             {
@@ -177,9 +176,23 @@ namespace vintage_garage_web.Repositories
                     break;
             }
 
-            //strUrl = strUrl.Replace(@"\\", @"\");
-
             return strUrl;
+        }
+
+        public async Task<HttpResponseMessage> GetAllCategories()
+        {
+            HttpResponseMessage getData;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(baseURL);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                getData = await client.GetAsync("Category");
+            }
+
+            return getData;
         }
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projects\\GitHub\\my_garage\\gateway_api\\gateway_api.csproj": {}
+    "E:\\Projects\\Mandiri\\services\\gateway_api\\gateway_api.csproj": {}
   },
   "projects": {
-    "E:\\Projects\\GitHub\\my_garage\\gateway_api\\gateway_api.csproj": {
+    "E:\\Projects\\Mandiri\\services\\gateway_api\\gateway_api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\GitHub\\my_garage\\gateway_api\\gateway_api.csproj",
+        "projectUniqueName": "E:\\Projects\\Mandiri\\services\\gateway_api\\gateway_api.csproj",
         "projectName": "gateway_api",
-        "projectPath": "E:\\Projects\\GitHub\\my_garage\\gateway_api\\gateway_api.csproj",
+        "projectPath": "E:\\Projects\\Mandiri\\services\\gateway_api\\gateway_api.csproj",
         "packagesPath": "C:\\Users\\darul\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\GitHub\\my_garage\\gateway_api\\obj\\",
+        "outputPath": "E:\\Projects\\Mandiri\\services\\gateway_api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\darul\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -28,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "E:\\Projects\\GitHub\\my_garage\\jwt_auth_manager\\jwt_auth_manager.csproj": {
-                "projectPath": "E:\\Projects\\GitHub\\my_garage\\jwt_auth_manager\\jwt_auth_manager.csproj"
+              "E:\\Projects\\Mandiri\\services\\jwt_auth_manager\\jwt_auth_manager.csproj": {
+                "projectPath": "E:\\Projects\\Mandiri\\services\\jwt_auth_manager\\jwt_auth_manager.csproj"
               }
             }
           }
@@ -72,14 +72,14 @@
         }
       }
     },
-    "E:\\Projects\\GitHub\\my_garage\\jwt_auth_manager\\jwt_auth_manager.csproj": {
+    "E:\\Projects\\Mandiri\\services\\jwt_auth_manager\\jwt_auth_manager.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\GitHub\\my_garage\\jwt_auth_manager\\jwt_auth_manager.csproj",
+        "projectUniqueName": "E:\\Projects\\Mandiri\\services\\jwt_auth_manager\\jwt_auth_manager.csproj",
         "projectName": "jwt_auth_manager",
-        "projectPath": "E:\\Projects\\GitHub\\my_garage\\jwt_auth_manager\\jwt_auth_manager.csproj",
+        "projectPath": "E:\\Projects\\Mandiri\\services\\jwt_auth_manager\\jwt_auth_manager.csproj",
         "packagesPath": "C:\\Users\\darul\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\GitHub\\my_garage\\jwt_auth_manager\\obj\\",
+        "outputPath": "E:\\Projects\\Mandiri\\services\\jwt_auth_manager\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\darul\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -50,7 +50,6 @@ namespace vehicle_service_api.Controllers
                     select c.categoryId
                     
                 ).Distinct().ToList();
-            //ids.Distinct().ToList();
             List<Category> categories1 = await _catRepo.GetCategories(ids);
 
             completeData =
@@ -98,11 +97,17 @@ namespace vehicle_service_api.Controllers
             if (newVehicle == null)
                 return BadRequest("Data Kosong");
 
-            //if(newVehicle.categories == null)
-            //    return BadRequest("Category Kosong");
+            if(string.IsNullOrWhiteSpace(newVehicle.name))
+                return BadRequest("Nama tidak boleh kosong");
 
-            //if (newVehicle.categories.Count < 1)
-            //    return BadRequest("Pilih minimal 1 Category");
+            if (string.IsNullOrWhiteSpace(newVehicle.description))
+                return BadRequest("Deskripsi tidak boleh kosong");
+
+            if (string.IsNullOrWhiteSpace(newVehicle.typeCode))
+                return BadRequest("Tipe Kendaraan tidak boleh kosong");
+
+            if (newVehicle.yearOfManufacture == 0)
+                return BadRequest("Tahun Manufacture tidak boleh kosong atau Nol");
 
             vehicle insertedVehicle = await this._vehicleRepo.InsertVehicle(newVehicle);
 
@@ -133,7 +138,19 @@ namespace vehicle_service_api.Controllers
         public async Task<IActionResult> UpdateVehicle(VehicleReq newVehicle)
         {
             if (newVehicle == null)
-                return BadRequest();
+                return BadRequest("Data Kosong");
+
+            if (string.IsNullOrWhiteSpace(newVehicle.name))
+                return BadRequest("Nama tidak boleh kosong");
+
+            if (string.IsNullOrWhiteSpace(newVehicle.description))
+                return BadRequest("Deskripsi tidak boleh kosong");
+
+            if (string.IsNullOrWhiteSpace(newVehicle.typeCode))
+                return BadRequest("Tipe Kendaraan tidak boleh kosong");
+
+            if (newVehicle.yearOfManufacture == 0)
+                return BadRequest("Tahun Manufacture tidak boleh kosong atau Nol");
 
             vehicle existingVehicle = await this._vehicleRepo.GetVehicle(newVehicle.id);
 

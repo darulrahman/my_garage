@@ -17,5 +17,6 @@ namespace vintage_garage_web.Repositories
         Task<HttpResponseMessage> GetType(string code);
         Task<HttpResponseMessage> Login(LoginReq log);
         string GetVehicleImage(string vehicleType);
+        Task<HttpResponseMessage> GetAllCategories();
     }
 }

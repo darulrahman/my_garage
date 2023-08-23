@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using vintage_garage_web.Models.Vehicle;
 
 namespace vintage_garage_web.Models
@@ -11,6 +12,7 @@ namespace vintage_garage_web.Models
         [DisplayName("Deskripsi")]
         public string? description { get; set; } = string.Empty;
         [DisplayName("Tipe Kendaraan")]
+        [Required]
         public string typeCode { get; set; } = string.Empty;
         public string typeName { get; set; } = string.Empty;
         [DisplayName("Tahun Pembuatan")]

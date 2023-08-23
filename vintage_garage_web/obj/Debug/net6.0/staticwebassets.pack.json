@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\vintage_garage_web.bundle.scp.css"
     },
     {
+      "Id": "E:\\Projects\\Mandiri\\services\\vintage_garage_web\\wwwroot\\css\\chosen.css",
+      "PackagePath": "staticwebassets\\css\\chosen.css"
+    },
+    {
       "Id": "E:\\Projects\\Mandiri\\services\\vintage_garage_web\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

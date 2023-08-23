@@ -6,52 +6,8 @@
 
 <h1>@ViewData["Tittle"]</h1>
 
-@*<br />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action=@ViewData["Title"]>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @Html.HiddenFor(model => model.id)
-            <div class="form-group">
-                <label asp-for="name" class="control-label fw-bold"></label>
-                <input asp-for="name" class="form-control" />
-                <span asp-validation-for="name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="description" class="control-label fw-bold"></label>
-                <input asp-for="description" class="form-control" />
-                <span asp-validation-for="description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="typeCode" class="control-label fw-bold"></label>
-                <select asp-for="typeCode" class="form-control form-select" asp-items="(SelectList)@ViewData["vehicleType"]">
-                    <option>Pilih Tipe Kendaraan</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label asp-for="yearOfManufacture" class="control-label fw-bold"></label>
-                <input asp-for="yearOfManufacture" class="form-control" />
-                <span asp-validation-for="yearOfManufacture" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>*@
-
-
-
 <div class="row">
     <div class="col-md-6 offset-3">
-        <p>
-            <h4>Login</h4>
-        </p>
-
         @if (TempData["Error"] != null)
         {
             <div class="col-md-12 alert alert-danger">
@@ -77,8 +33,9 @@
                     <div class="form-group">
                         <label asp-for="typeCode" class="control-label fw-bold"></label>
                         <select asp-for="typeCode" class="form-control form-select" asp-items="(SelectList)@ViewData["vehicleType"]">
-                            <option>Pilih Tipe Kendaraan</option>
+                            @*<option>Pilih Tipe Kendaraan</option>*@
                         </select>
+                        <span asp-validation-for="typeCode" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="yearOfManufacture" class="control-label fw-bold"></label>
@@ -89,9 +46,6 @@
                         <div class="form-group">
                             <input type="submit" value="Save" class="btn btn-primary float-left" />
                         </div>
-                        @*<div class="form-group">
-                        <input type="submit" value="Save" class="btn btn-primary float-left" />
-                        </div>*@
                         <a class="btn btn-outline-secondary float-left" asp-action="Index">
                             <i class="bi bi-slash-circle"></i> Cancel
                         </a>

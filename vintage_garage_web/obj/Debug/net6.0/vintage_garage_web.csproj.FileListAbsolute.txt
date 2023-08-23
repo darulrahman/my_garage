@@ -253,3 +253,4 @@ E:\Projects\Mandiri\services\vintage_garage_web\obj\Debug\net6.0\refint\vintage_
 E:\Projects\Mandiri\services\vintage_garage_web\obj\Debug\net6.0\vintage_garage_web.pdb
 E:\Projects\Mandiri\services\vintage_garage_web\obj\Debug\net6.0\vintage_garage_web.genruntimeconfig.cache
 E:\Projects\Mandiri\services\vintage_garage_web\obj\Debug\net6.0\ref\vintage_garage_web.dll
+E:\Projects\Mandiri\services\vintage_garage_web\bin\Debug\net6.0\default.png

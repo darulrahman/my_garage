@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Net;
 using vintage_garage_web.Models;
+using vintage_garage_web.Models.Vehicle;
 using vintage_garage_web.Repositories;
 
 namespace vintage_garage_web.Controllers
@@ -29,7 +31,8 @@ namespace vintage_garage_web.Controllers
             {
                 string strVeh = resVehicle.Result.Content.ReadAsStringAsync().Result;
                 string strType = resType.Result.Content.ReadAsStringAsync().Result;
-                List<VehicleViewModel> tmpVeh = JsonConvert.DeserializeObject<List<VehicleViewModel>>(strVeh);
+                List<VehicleViewModel> tmpVeh = new List<VehicleViewModel>();
+                tmpVeh = JsonConvert.DeserializeObject<List<VehicleViewModel>>(strVeh);
                 List<TypeViewModel> tmpType = JsonConvert.DeserializeObject<List<TypeViewModel>>(strType);
                 tmpVeh.ForEach(x => {
                     x.typeName = tmpType.Where(z => z.typeCode == x.typeCode).Select(z => z.typeName).FirstOrDefault();
@@ -44,27 +47,42 @@ namespace vintage_garage_web.Controllers
 
         public async Task<IActionResult> Create()
         {
-            HttpResponseMessage listType = await _repo.GetAllType();
+            Task<HttpResponseMessage> listCat = _repo.GetAllCategories();
+            Task<HttpResponseMessage> listType = _repo.GetAllType();
+
+            await Task.WhenAll(listCat, listType);
             List<TypeViewModel> list = new List<TypeViewModel>();
-            if (listType.IsSuccessStatusCode)
+            List<Category> cats = new List<Category>();
+            if (listType.Result.IsSuccessStatusCode && listType.Result.IsSuccessStatusCode)
             {
 
-                string inserted = listType.Content.ReadAsStringAsync().Result;
+                string inserted = listType.Result.Content.ReadAsStringAsync().Result;
                 list = JsonConvert.DeserializeObject<List<TypeViewModel>>(inserted);
                 ViewData["vehicleType"] = new SelectList(list, "typeCode", "typeName");
+
+                string strCat = listCat.Result.Content.ReadAsStringAsync().Result;
+                cats = JsonConvert.DeserializeObject<List<Category>>(strCat);
+                ViewBag.ItemsBag = new SelectList(cats, "id", "description");
             }
+            else
+                TempData["Error"] = "Some Parameter aren't loaded successfully";
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(VehicleViewModel vehicle)
         {
-            HttpResponseMessage response = await this._repo.AddVehicle(vehicle);
-
+            HttpResponseMessage response = new HttpResponseMessage();
+            response = await this._repo.AddVehicle(vehicle);
+            string errMessage = "";
             if (response.IsSuccessStatusCode)
                 return RedirectToAction("Index", "Vehicle");
-
-            TempData["Error"] = "Gagal insert data";
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                errMessage = await response.Content.ReadAsStringAsync();
+            }
+            errMessage = string.IsNullOrEmpty(errMessage) ? "Gagal Insert Data" : errMessage;
+            TempData["Error"] = errMessage;
             return View();
         }
 
@@ -97,11 +115,16 @@ namespace vintage_garage_web.Controllers
         public async Task<IActionResult> Edit(VehicleViewModel vehicle)
         {
             HttpResponseMessage response = await this._repo.UpdateVehicle(vehicle);
+            string errMessage = "";
 
             if (response.IsSuccessStatusCode)
                 return RedirectToAction("Index", "Vehicle");
-
-            TempData["Error"] = "Gagal insert data";
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                errMessage = await response.Content.ReadAsStringAsync();
+            }
+            errMessage = string.IsNullOrEmpty(errMessage) ? "Gagal Update Data" : errMessage;
+            TempData["Error"] = errMessage;
 
             return View("Create", vehicle);
         }
