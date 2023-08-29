@@ -11,10 +11,16 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.21",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.21",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.16",
-          "Newtonsoft.Json": "13.0.3"
+          "Newtonsoft.Json": "13.0.3",
+          "bootstrap.chosen": "1.0.0"
         },
         "runtime": {
           "vintage_garage_web.dll": {}
+        }
+      },
+      "bootstrap.chosen/1.0.0": {
+        "dependencies": {
+          "jQuery": "1.6.4"
         }
       },
       "Humanizer/2.14.1": {
@@ -557,6 +563,7 @@
           }
         }
       },
+      "jQuery/1.6.4": {},
       "MessagePack/2.1.152": {
         "dependencies": {
           "MessagePack.Annotations": "2.1.152",
@@ -2479,6 +2486,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "bootstrap.chosen/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gq1QwZ53xlx1mKUBbSP9+o0AVsL61g6RQ5Jia/ghXb4CurA1aJUZtoOnO77fZrSsuRNh0J7I5ct5qTu2otQUmg==",
+      "path": "bootstrap.chosen/1.0.0",
+      "hashPath": "bootstrap.chosen.1.0.0.nupkg.sha512"
+    },
     "Humanizer/2.14.1": {
       "type": "package",
       "serviceable": true,
@@ -2828,6 +2842,13 @@
       "sha512": "sha512-VIXB7HCUC34OoaGnO3HJVtSv2/wljPhjV7eKH4+TFPgQdJj2lvHNKY41Dtg0Bphu7X5UaXFR4zrYYyo+GNOjbA==",
       "path": "humanizer.core.zh-hant/2.14.1",
       "hashPath": "humanizer.core.zh-hant.2.14.1.nupkg.sha512"
+    },
+    "jQuery/1.6.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8RzoZQFeFYL/cINRXksLWyl8D5TKctZ/2G8hrlOLLM5OgFNI9h3t3l5tB+BBbsBUxaPUageVe0p9ruU5jrFeow==",
+      "path": "jquery/1.6.4",
+      "hashPath": "jquery.1.6.4.nupkg.sha512"
     },
     "MessagePack/2.1.152": {
       "type": "package",

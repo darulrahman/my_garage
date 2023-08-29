@@ -21,7 +21,6 @@ namespace vintage_garage_web.Models
         public int yearOfManufacture { get; set; }
         public string imageUrl { get; set; } = string.Empty;
         public List<Category> categories { get; set; } = new List<Category>();
-        public IEnumerable<SelectListItem> CategoryOptions { get; set; }        
-        public string SelectedCategories { get; set; }
+        public List<int> SelectedCategory { get; set; }
     }
 }

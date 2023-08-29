@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="bootstrap.chosen" Version="1.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.21">
       <PrivateAssets>all</PrivateAssets>
@@ -24,13 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="default.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="default.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Folder Include="Content\" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "AxGX/W427Nl02AKcM+lgNSEP6VjR2Yc+HJxeRwwv/kYI7RVzcU9ML2mNWASOP1GWYaX4x7o5H8EswpcAWArgAw==",
+  "dgSpecHash": "LwqqPxgZnUSARV1uWCeqVwH4a5K1toM4XbimwW8an5RnRkqHVYSfdwpkoykj1hErmqzgzl+7SHBkZa1VCuA/cw==",
   "success": true,
-  "projectFilePath": "E:\\Projects\\GitHub\\my_garage\\vintage_garage_web\\vintage_garage_web.csproj",
+  "projectFilePath": "E:\\Projects\\Mandiri\\services\\vintage_garage_web\\vintage_garage_web.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\darul\\.nuget\\packages\\bootstrap.chosen\\1.0.0\\bootstrap.chosen.1.0.0.nupkg.sha512",
     "C:\\Users\\darul\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\darul\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\darul\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",
@@ -54,6 +55,7 @@
     "C:\\Users\\darul\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\darul\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\darul\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\darul\\.nuget\\packages\\jquery\\1.6.4\\jquery.1.6.4.nupkg.sha512",
     "C:\\Users\\darul\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\darul\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\darul\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",

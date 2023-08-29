@@ -85,9 +85,37 @@ namespace vehicle_service_api.Controllers
 
         [HttpGet("{id}")]
         //[Authorize]
-        public async Task<vehicle> GetVehicle(int id)
-        {
-            return await this._vehicleRepo.GetVehicle(id);
+        public async Task<ActionResult<VehicleRes>> GetVehicle(int id)
+        {                       
+            vehicle vehicle =  await this._vehicleRepo.GetVehicle(id);
+
+            if (vehicle == null)
+                return BadRequest("Vehicle Not Found");
+
+            VehicleRes res = new VehicleRes
+            {
+                id = vehicle.id,
+                description = vehicle.description,
+                typeCode = vehicle.typeCode,
+                name = vehicle.name,
+                yearOfManufacture = vehicle.yearOfManufacture,
+                categories = new List<Category>()
+            };
+
+            List<VehicleCategoryMapping> listMapping = new List<VehicleCategoryMapping>();
+            listMapping = await this._catRepo.GetCategoriesByVehicleId(vehicle.id);
+
+            if(listMapping.Count > 0)
+            {
+                res.categories.AddRange(
+                    listMapping.Select(x => new Category {
+                        id = this._catRepo.GetCategoryNonThread(x.categoryId).id,
+                        description = this._catRepo.GetCategoryNonThread(x.categoryId).description
+                    })
+                    );
+            }
+
+            return Ok(res);
         }
 
         [HttpPost]

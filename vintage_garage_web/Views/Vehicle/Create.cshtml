@@ -4,6 +4,9 @@
     ViewData["Title"] = Model != null ? Model.Action:"Create";
 }
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/chosen/1.1.0/chosen.css"/>
+<script src="//cdn.jsdelivr.net/chosen/1.1.0/chosen.jquery.js"></script>
+
 <h1>@ViewData["Tittle"]</h1>
 
 <div class="row">
@@ -19,6 +22,7 @@
             <div class="col-md-8 offset-2">
                 <form asp-action=@ViewData["Title"]>
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.id)
                     <div class="form-group">
                         <label asp-for="name" class="control-label fw-bold"></label>
@@ -41,6 +45,13 @@
                         <input asp-for="yearOfManufacture" class="form-control" />
                         <span asp-validation-for="yearOfManufacture" class="text-danger"></span>
                     </div>
+                    <div class="form-group">
+                        @Html.DropDownListFor(Model => Model.SelectedCategory
+                        , ViewBag.ItemsBag as MultiSelectList,
+                        new {
+                            @class="form-control", @multiple=true
+                        })
+                    </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <input type="submit" value="Save" class="btn btn-primary float-left" />
@@ -55,6 +66,17 @@
         </div>
     </div>
 </div>
+
 @section Scripts {
+    <script type="text/javascript">
+        $(function() {
+            $(".category-chosen").chosen();
+        });
+        
+
+    </script>
+    
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+   
 }

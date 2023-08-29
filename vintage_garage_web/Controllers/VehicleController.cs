@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
 using Newtonsoft.Json;
+using NuGet.Packaging;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using vintage_garage_web.Models;
 using vintage_garage_web.Models.Vehicle;
@@ -49,75 +51,101 @@ namespace vintage_garage_web.Controllers
         {
             VehicleViewModel model = new VehicleViewModel();
             model.Action = "create";
-            Task<HttpResponseMessage> listCat = _repo.GetAllCategories();
-            Task<HttpResponseMessage> listType = _repo.GetAllType();
+            
+            List<TypeViewModel> list = this.GetType();
 
-            await Task.WhenAll(listCat, listType);
-            List<TypeViewModel> list = new List<TypeViewModel>();
-            List<Category> cats = new List<Category>();
-            if (listType.Result.IsSuccessStatusCode && listType.Result.IsSuccessStatusCode)
-            {
+            ViewData["vehicleType"] = new SelectList(list, "typeCode", "typeName");
 
-                string inserted = listType.Result.Content.ReadAsStringAsync().Result;
-                list = JsonConvert.DeserializeObject<List<TypeViewModel>>(inserted);
-                ViewData["vehicleType"] = new SelectList(list, "typeCode", "typeName");
+            List<Category> cats = this.GetCategory();
+            ViewBag.ItemsBag = new MultiSelectList(cats, "id", "description");
 
-                string strCat = listCat.Result.Content.ReadAsStringAsync().Result;
-                cats = JsonConvert.DeserializeObject<List<Category>>(strCat);
-                ViewBag.ItemsBag = new SelectList(cats, "id", "description");
-                model.CategoryOptions = new SelectList(cats, "id", "description");
-            }
-            else
-                TempData["Error"] = "Some Parameter aren't loaded successfully";
             return View(model);
         }
+
+        
 
         [HttpPost]
         public async Task<IActionResult> Create(VehicleViewModel vehicle)
         {
-            HttpResponseMessage response = new HttpResponseMessage();
-            VehicleReq vehicleReq = new VehicleReq
-            {
-                id = vehicle.id, 
-                name = vehicle.name,
-                description = vehicle.description,
-                categories = vehicle.categories,
-                typeCode = vehicle.typeCode,
-                yearOfManufacture = vehicle.yearOfManufacture
-            };         
-            response = await this._repo.AddVehicle(vehicleReq);
             string errMessage = "";
-            if (response.IsSuccessStatusCode)
-                return RedirectToAction("Index", "Vehicle");
-            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            if (ModelState.IsValid)
             {
-                errMessage = await response.Content.ReadAsStringAsync();
+                HttpResponseMessage response = new HttpResponseMessage();
+                List<Category> SelectedCat = new List<Category>();
+                if (vehicle.SelectedCategory.Count > 0)
+                    SelectedCat.AddRange(
+                        vehicle.SelectedCategory.Select(x => new Category
+                        {
+                            id = x,
+                            description = ""
+                        })
+                        );
+                VehicleReq vehicleReq = new VehicleReq
+                {
+                    id = vehicle.id,
+                    name = vehicle.name,
+                    description = vehicle.description,
+                    categories = SelectedCat,
+                    typeCode = vehicle.typeCode,
+                    yearOfManufacture = vehicle.yearOfManufacture
+                };
+                response = await this._repo.AddVehicle(vehicleReq);
+                
+                if (response.IsSuccessStatusCode)
+                    return RedirectToAction("Index", "Vehicle");
+                else if (response.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    errMessage = await response.Content.ReadAsStringAsync();
+                }
+                errMessage = string.IsNullOrEmpty(errMessage) ? "Gagal Insert Data" : errMessage;
+
             }
-            errMessage = string.IsNullOrEmpty(errMessage) ? "Gagal Insert Data" : errMessage;
+            else
+            {
+                errMessage = "Data Tidak Valid";
+            }
+
             TempData["Error"] = errMessage;
-            return View();
+           
+            List<TypeViewModel> list = this.GetType();
+
+            ViewData["vehicleType"] = new SelectList(list, "typeCode", "typeName");
+
+            List<Category> cats = this.GetCategory();
+            ViewBag.ItemsBag = new MultiSelectList(cats, "id", "description");
+
+            return View(vehicle);
         }
 
         public async Task<IActionResult> Edit(int id)
         {
             VehicleViewModel model = new VehicleViewModel();
+
+            HttpResponseMessage response = await this._repo.GetVehiclesById(id);
             
-            Task<HttpResponseMessage> response = this._repo.GetVehiclesById(id);
-            Task<HttpResponseMessage> listType = _repo.GetAllType();
-
-            await Task.WhenAll(response, listType);
-
-            if (response.Result.IsSuccessStatusCode && listType.Result.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
-                string result = response.Result.Content.ReadAsStringAsync().Result;
+                string result = response.Content.ReadAsStringAsync().Result;
                 VehicleViewModel tmpModel = JsonConvert.DeserializeObject<VehicleViewModel>(result);
 
-                string resultType = listType.Result.Content.ReadAsStringAsync().Result;
-                List<TypeViewModel> tmpType = JsonConvert.DeserializeObject<List<TypeViewModel>>(resultType);
+                List<TypeViewModel> list = this.GetType();
 
-                ViewData["vehicleType"] = new SelectList(tmpType, "typeCode", "typeName");
+                ViewData["vehicleType"] = new SelectList(list, "typeCode", "typeName");
 
-                tmpModel.typeName = tmpType.Where(z => z.typeCode == tmpModel.typeCode).Select(x => x.typeName).FirstOrDefault();
+                
+
+                tmpModel.typeName = list.Where(z => z.typeCode == tmpModel.typeCode).Select(x => x.typeName).FirstOrDefault();
+
+                int[] asd = new int[] { 0 };
+
+                if (tmpModel.categories.Count > 0)
+                {
+                    asd = tmpModel.categories.Select(x => x.id).ToArray();
+                }
+
+                List<Category> cats = this.GetCategory();
+                ViewBag.ItemsBag = new MultiSelectList(cats, "id", "description", asd);
+
                 model = tmpModel;
                 model.Action = "Edit";
             }
@@ -127,12 +155,21 @@ namespace vintage_garage_web.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(VehicleViewModel vehicle)
         {
+            List<Category> SelectedCat = new List<Category>();
+            if (vehicle.SelectedCategory.Count > 0)
+                SelectedCat.AddRange(
+                    vehicle.SelectedCategory.Select(x => new Category
+                    {
+                        id = x,
+                        description = ""
+                    })
+                    );
             VehicleReq vehicleReq = new VehicleReq
             {
                 id = vehicle.id,
                 name = vehicle.name,
                 description = vehicle.description,
-                categories = vehicle.categories,
+                categories = SelectedCat,
                 typeCode = vehicle.typeCode,
                 yearOfManufacture = vehicle.yearOfManufacture
             };
@@ -148,6 +185,13 @@ namespace vintage_garage_web.Controllers
             errMessage = string.IsNullOrEmpty(errMessage) ? "Gagal Update Data" : errMessage;
             TempData["Error"] = errMessage;
 
+            List<TypeViewModel> list = this.GetType();
+
+            ViewData["vehicleType"] = new SelectList(list, "typeCode", "typeName");
+
+            List<Category> cats = this.GetCategory();
+            ViewBag.ItemsBag = new MultiSelectList(cats, "id", "description");
+
             return View("Create", vehicle);
         }
 
@@ -162,6 +206,30 @@ namespace vintage_garage_web.Controllers
             return View();
         }
 
-        
+        private List<Category> GetCategory()
+        {
+            HttpResponseMessage listCat = _repo.GetAllCategories().GetAwaiter().GetResult();
+            List<Category> cats = new List<Category>();
+            if (listCat.IsSuccessStatusCode)
+            {
+                string strCat = listCat.Content.ReadAsStringAsync().Result;
+                cats = JsonConvert.DeserializeObject<List<Category>>(strCat);
+            }
+
+            return cats;
+        }
+
+        private List<TypeViewModel> GetType()
+        {
+            HttpResponseMessage listCat = _repo.GetAllType().GetAwaiter().GetResult();
+            List<TypeViewModel> cats = new List<TypeViewModel>();
+            if (listCat.IsSuccessStatusCode)
+            {
+                string strCat = listCat.Content.ReadAsStringAsync().Result;
+                cats = JsonConvert.DeserializeObject<List<TypeViewModel>>(strCat);
+            }
+
+            return cats;
+        }
     }
 }

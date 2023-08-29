@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = jwt_auth_manager
-build_property.ProjectDir = E:\Projects\GitHub\my_garage\jwt_auth_manager\
+build_property.ProjectDir = E:\Projects\Mandiri\services\jwt_auth_manager\

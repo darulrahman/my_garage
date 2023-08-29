@@ -6,6 +6,7 @@ namespace vehicle_service_api.Repositories
     {
         Task<List<Category>> GetAllCategories();
         Task<Category> GetCategory(int id);
+        Category GetCategoryNonThread(int id);
         Task<List<Category>> GetCategories(List<int> ids);
         Task<List<VehicleCategoryMapping>> GetCategoriesByVehicleId(int id);
         Task<List<VehicleCategoryMapping>> GetCategoriesByVehicles(List<vehicle> vehicles);

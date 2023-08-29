@@ -34,6 +34,7 @@
                         <p class="card-text"><b>Name: </b>@item.name</p>
                         <p class="card-text"><b>Type: </b>@item.typeName</p>
                         <p class="card-text"><b>Manufactured: </b>@item.yearOfManufacture</p>
+                            <p class="card-text"><b>Category(s): </b>@string.Join(", ", item.categories.Select(x => x.description))</p>
                     </div>
                 </div>
                 <div class="col-md-12">

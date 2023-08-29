@@ -32,6 +32,11 @@ namespace vehicle_service_api.Repositories
             return await _context.category.FindAsync(id);
         }
 
+        public Category GetCategoryNonThread(int id)
+        {
+            return _context.category.Find(id);
+        }
+
         public async Task<List<VehicleCategoryMapping>> GetCategoriesByVehicleId(int id)
         {
             return await _context.VehicleCategories.Where(x => x.vehicleId == id).ToListAsync();
