@@ -47,6 +47,8 @@ namespace vintage_garage_web.Controllers
 
         public async Task<IActionResult> Create()
         {
+            VehicleViewModel model = new VehicleViewModel();
+            model.Action = "create";
             Task<HttpResponseMessage> listCat = _repo.GetAllCategories();
             Task<HttpResponseMessage> listType = _repo.GetAllType();
 
@@ -63,17 +65,27 @@ namespace vintage_garage_web.Controllers
                 string strCat = listCat.Result.Content.ReadAsStringAsync().Result;
                 cats = JsonConvert.DeserializeObject<List<Category>>(strCat);
                 ViewBag.ItemsBag = new SelectList(cats, "id", "description");
+                model.CategoryOptions = new SelectList(cats, "id", "description");
             }
             else
                 TempData["Error"] = "Some Parameter aren't loaded successfully";
-            return View();
+            return View(model);
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(VehicleViewModel vehicle)
         {
             HttpResponseMessage response = new HttpResponseMessage();
-            response = await this._repo.AddVehicle(vehicle);
+            VehicleReq vehicleReq = new VehicleReq
+            {
+                id = vehicle.id, 
+                name = vehicle.name,
+                description = vehicle.description,
+                categories = vehicle.categories,
+                typeCode = vehicle.typeCode,
+                yearOfManufacture = vehicle.yearOfManufacture
+            };         
+            response = await this._repo.AddVehicle(vehicleReq);
             string errMessage = "";
             if (response.IsSuccessStatusCode)
                 return RedirectToAction("Index", "Vehicle");
@@ -89,7 +101,7 @@ namespace vintage_garage_web.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             VehicleViewModel model = new VehicleViewModel();
-
+            
             Task<HttpResponseMessage> response = this._repo.GetVehiclesById(id);
             Task<HttpResponseMessage> listType = _repo.GetAllType();
 
@@ -107,6 +119,7 @@ namespace vintage_garage_web.Controllers
 
                 tmpModel.typeName = tmpType.Where(z => z.typeCode == tmpModel.typeCode).Select(x => x.typeName).FirstOrDefault();
                 model = tmpModel;
+                model.Action = "Edit";
             }
             return View("Create", model);
         }
@@ -114,7 +127,16 @@ namespace vintage_garage_web.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(VehicleViewModel vehicle)
         {
-            HttpResponseMessage response = await this._repo.UpdateVehicle(vehicle);
+            VehicleReq vehicleReq = new VehicleReq
+            {
+                id = vehicle.id,
+                name = vehicle.name,
+                description = vehicle.description,
+                categories = vehicle.categories,
+                typeCode = vehicle.typeCode,
+                yearOfManufacture = vehicle.yearOfManufacture
+            };
+            HttpResponseMessage response = await this._repo.UpdateVehicle(vehicleReq);
             string errMessage = "";
 
             if (response.IsSuccessStatusCode)

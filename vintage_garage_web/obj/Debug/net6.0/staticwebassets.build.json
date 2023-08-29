@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "iPlWqITbnrr9FQTUWXZiQyCNACXlrG6MSc1LAD1qzzI=",
+  "Hash": "3sbvD+fRCHIReGenBrjxgIaom1Co0WxCd/qGN5EhmGk=",
   "Source": "vintage_garage_web",
   "BasePath": "_content/vintage_garage_web",
   "Mode": "Default",
@@ -49,23 +49,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "E:\\Projects\\Mandiri\\services\\vintage_garage_web\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\vintage_garage_web.bundle.scp.css"
-    },
-    {
-      "Identity": "E:\\Projects\\Mandiri\\services\\vintage_garage_web\\wwwroot\\css\\chosen.css",
-      "SourceId": "vintage_garage_web",
-      "SourceType": "Discovered",
-      "ContentRoot": "E:\\Projects\\Mandiri\\services\\vintage_garage_web\\wwwroot\\",
-      "BasePath": "_content/vintage_garage_web",
-      "RelativePath": "css/chosen.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\chosen.css"
     },
     {
       "Identity": "E:\\Projects\\Mandiri\\services\\vintage_garage_web\\wwwroot\\css\\site.css",

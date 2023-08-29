@@ -10,8 +10,8 @@ namespace vintage_garage_web.Repositories
       
         Task<HttpResponseMessage> GetVehiclesById(int id);
   
-        Task<HttpResponseMessage> AddVehicle(VehicleViewModel vehicle);
-        Task<HttpResponseMessage> UpdateVehicle(VehicleViewModel vehicle);
+        Task<HttpResponseMessage> AddVehicle(VehicleReq vehicle);
+        Task<HttpResponseMessage> UpdateVehicle(VehicleReq vehicle);
         Task<HttpResponseMessage> DeleteVehicle(int id);
         Task<HttpResponseMessage> GetAllType();
         Task<HttpResponseMessage> GetType(string code);

@@ -33,7 +33,7 @@ namespace vintage_garage_web.Repositories
             return getData;
         }
 
-        public async Task<HttpResponseMessage> AddVehicle(VehicleViewModel vehicle)
+        public async Task<HttpResponseMessage> AddVehicle(VehicleReq vehicle)
         {
             HttpResponseMessage getData;
 
@@ -51,7 +51,7 @@ namespace vintage_garage_web.Repositories
             return getData;
         }
 
-        public async Task<HttpResponseMessage> UpdateVehicle(VehicleViewModel vehicle)
+        public async Task<HttpResponseMessage> UpdateVehicle(VehicleReq vehicle)
         {
             HttpResponseMessage getData;
 
@@ -153,26 +153,26 @@ namespace vintage_garage_web.Repositories
 
         public string GetVehicleImage(string vehicleType)
         {
-            string strUrl = @"file:///" + System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Resources\\img\\");
+            string strUrl = "";
             switch (vehicleType)
             {
                 case "bk":
-                    strUrl += "bike.png";
+                    strUrl = "https://cdn-icons-png.flaticon.com/512/568/568148.png";
                     break;
                 case "car":
-                    strUrl += "car.png";
+                    strUrl = "https://cdn-icons-png.flaticon.com/512/3774/3774270.png";
                     break;
                 case "trn":
-                    strUrl += "train.png";
+                    strUrl = "https://www.freeiconspng.com/uploads/transportation-icon-png-3.png";
                     break;
                 case "bus":
-                    strUrl += "bus.png";
+                    strUrl = "https://cdn-icons-png.flaticon.com/512/272/272861.png";
                     break;
                 case "trk":
-                    strUrl += "truck.png";
+                    strUrl = "https://cdn-icons-png.flaticon.com/512/215/215856.png";
                     break;
                 default:
-                    strUrl += "default.png";
+                    strUrl = "https://cdn-icons-png.flaticon.com/512/190/190190.png";
                     break;
             }
 
