@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Projects\\Mandiri\\services\\vintage_garage_web\\vintage_garage_web.csproj": {}
+    "E:\\Projects\\GitHub\\my_garage\\vintage_garage_web\\vintage_garage_web.csproj": {}
   },
   "projects": {
-    "E:\\Projects\\Mandiri\\services\\vintage_garage_web\\vintage_garage_web.csproj": {
+    "E:\\Projects\\GitHub\\my_garage\\vintage_garage_web\\vintage_garage_web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Projects\\Mandiri\\services\\vintage_garage_web\\vintage_garage_web.csproj",
+        "projectUniqueName": "E:\\Projects\\GitHub\\my_garage\\vintage_garage_web\\vintage_garage_web.csproj",
         "projectName": "vintage_garage_web",
-        "projectPath": "E:\\Projects\\Mandiri\\services\\vintage_garage_web\\vintage_garage_web.csproj",
+        "projectPath": "E:\\Projects\\GitHub\\my_garage\\vintage_garage_web\\vintage_garage_web.csproj",
         "packagesPath": "C:\\Users\\darul\\.nuget\\packages\\",
-        "outputPath": "E:\\Projects\\Mandiri\\services\\vintage_garage_web\\obj\\",
+        "outputPath": "E:\\Projects\\GitHub\\my_garage\\vintage_garage_web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\darul\\AppData\\Roaming\\NuGet\\NuGet.Config",
